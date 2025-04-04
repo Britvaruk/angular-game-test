@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="content">
+    @if (currentState$ | async; as state) {
+    <img src="assets/images/bg/bg-top.svg" class="bg-top" />
+
+    <div class="bg-bottom">
+      <img src="assets/images/bg/grid.svg" />
+      <img src="assets/images/bg/blur.svg" class="bg-bottom__blur" />
+      <img src="assets/images/bg/button-2.svg" class="bg-bottom__button" />
+      <img
+        src="assets/images/bg/button.svg"
+        class="bg-bottom__button"
+        [class.bg-bottom__button_pressed]="
+          [gameStateEnum.ScaleAnimation, gameStateEnum.EndGame].includes(state)
+        "
+      />
+      <img src="assets/images/bg/blur-2.svg" class="bg-bottom__blur-top" />
+    </div>
+
+    <app-power-scale [blocksHit]="blocksHit"></app-power-scale>
+
+    <div class="game-area">
+      <app-power-meter [power]="hitPower"></app-power-meter>
+
+      <div class="right-side">
+        <div
+          class="button-block"
+          [class.button-block_hidden]="
+            [gameStateEnum.HitAnimation, gameStateEnum.ScaleAnimation].includes(state)
+          "
+        >
+          <app-game-text [text]="gameText"></app-game-text>
+
+          @if (!(state === gameStateEnum.HitWaiting)) {
+          <button (click)="startPowerMeter()" class="button-block__start-btn">НОВАЯ ИГРА</button>
+          } @else {
+          <button (click)="hit()" class="button-block__hit-btn">УДАР!</button>
+          }
+        </div>
+        <div class="robot">
+          @if (state === gameStateEnum.ScaleAnimation || (state === gameStateEnum.EndGame &&
+          hitPower <= 90)) {
+          <img src="assets/images/robot/robot-2.svg" />
+          } @else if (state === gameStateEnum.EndGame && hitPower > 90) {
+          <img src="assets/images/robot/robot-3.svg" />
+          } @else {
+          <img src="assets/images/robot/robot.svg" />
+          }
+        </div>
+      </div>
+    </div>
+
+    <img
+      src="assets/images/hammer.svg"
+      class="hammer"
+      [class.hammer_moved]="state === gameStateEnum.HitWaiting"
+      [class.hammer_animated]="
+        [gameStateEnum.HitAnimation, gameStateEnum.ScaleAnimation, gameStateEnum.EndGame].includes(
+          state
+        )
+      "
+    />
+    }
+  </div>
+</div>

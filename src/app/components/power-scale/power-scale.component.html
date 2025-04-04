@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="scale">
+    <img
+      src="assets/images/power-scale/star.svg"
+      class="scale__star"
+      [class.visible]="starVisible"
+    />
+    <img src="assets/images/power-scale/prize.svg" class="scale__prize" />
+
+    @for (item of scaleBlocks; track $index) {
+    <div [class]="['scale__block', item.class]" [class.visible]="item.isVisible"></div>
+    }
+  </div>
+</div>

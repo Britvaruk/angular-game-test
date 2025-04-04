@@ -1,0 +1,17 @@
+.text {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: break-spaces;
+  text-shadow: 0px 4px 4px #00000040;
+
+  &__win {
+    margin-top: -5px;
+  }
+  &_red {
+    color: #ff4646;
+  }
+}

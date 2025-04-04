@@ -1,0 +1,17 @@
+<!-- prettier-ignore -->
+<div class="text">
+  @switch (text) {
+    @case (textVariantEnum.NewGame) {
+      <span>Привет!<br />Проверим твою силу!</span>
+    }
+    @case (textVariantEnum.Hit) {
+      <span>Жми на кнопку<br>в нужный момент!</span>
+    }
+    @case (textVariantEnum.Loss) {
+      <span>Неплохо!<br />Попробуй ещё раз.</span>
+    }
+    @case (textVariantEnum.Win) {
+      <span class="text__win">ВОТ ЭТО СИЛА!<br />Ты выбил главный приз!<span class="text_red">Рубин</span></span>
+    }
+  }
+</div>
